@@ -1,22 +1,27 @@
 from PySide6.QtWidgets import QApplication, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget
-
 class LoginWindowUser(QWidget):
     def __init__(self):
         super().__init__()
         
-
         # elementy interfejsu
-        self.label_username = QLabel("NAZWA UŻYTKOWNIKA:")
+        self.label_username = QLabel("NAZWA UŻYTKOWNIKA🐷:")
         self.line_edit_username = QLineEdit()
-        self.label_password = QLabel("HASŁO:")
+        self.label_password = QLabel("HASŁO🐷:")
         self.line_edit_password = QLineEdit()
         # self.line_edit_password.setEchoMode(QLineEdit.Password) # zakropkowanie wpisanego hasla
-        self.button_login = QPushButton("ZALOGUJ")
+        self.button_login = QPushButton("🐽ZALOGUJ🐽")
         # self.setFixedHeight(width(width=600))
         
-        # kolorki ziuuu
-        self.label_username.setStyleSheet("color: white; font-weight: bold; font-size: 15px;")
-
+        # kolorki ziuuu - text
+        self.label_username.setStyleSheet("color: white; font-weight: bold; font-size: 19px;")
+        self.label_password.setStyleSheet("color: white; font-weight: bold; font-size: 19px;")
+        
+        # kolorki ziuu - tabelki
+        self.line_edit_username.setStyleSheet("color: yellow; font-weight: bold; font-size: 19px;")
+        self.line_edit_password.setStyleSheet("color: yellow; font-weight: bold; font-size: 19px;")
+        
+        # kolorki ziuu - logowanie zaloguj button
+        self.button_login.setStyleSheet("background-color: pink;color: yellow; font-weight: bold; font-size: 19px;")
         
         # layout i elementy do niego
         layout = QVBoxLayout()
@@ -29,9 +34,10 @@ class LoginWindowUser(QWidget):
         
         # layout na widget
         self.setLayout(layout)
-        
+            
         # window.resize(x,y) -> zmiana rozmiaru okna
-
+        
+        
 if __name__ == "__main__":
     app = QApplication([])
     
@@ -39,7 +45,7 @@ if __name__ == "__main__":
     login_widget = LoginWindowUser() 
     
     login_widget.resize(500, 400)
-    login_widget.setStyleSheet("background-color: lightblue;")
+    login_widget.setStyleSheet("background-color: black;")
     #login_widget.setStyleSheet("color: red; font-weight: bold; font-size: 30px;")
 
     login_widget.show()
