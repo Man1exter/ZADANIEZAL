@@ -1,12 +1,12 @@
-from PySide6.QtWidgets import QApplication, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout
 class LoginWindowUser(QWidget):
     def __init__(self):
         super().__init__()
         
         # elementy interfejsu
-        self.label_username = QLabel("NAZWA UŻYTKOWNIKA🐷:")
+        self.label_username = QLabel("                     NAZWA UŻYTKOWNIKA🐷:")
         self.line_edit_username = QLineEdit()
-        self.label_password = QLabel("HASŁO🐷:")
+        self.label_password = QLabel("                                      HASŁO🐷:")
         self.line_edit_password = QLineEdit()
         # self.line_edit_password.setEchoMode(QLineEdit.Password) # zakropkowanie wpisanego hasla
         self.button_login = QPushButton("🐽ZALOGUJ🐽")
@@ -40,6 +40,7 @@ class LoginWindowUser(QWidget):
         
 if __name__ == "__main__":
     app = QApplication([])
+    app.setApplicationName("WYNAJEM SWINEK NA GODZINE")
     
     # stworzona instancja
     login_widget = LoginWindowUser() 
