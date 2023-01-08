@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout
+from PySide6.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QtGui, QtCore
 from interface_login import LoginWindowUser
 
 
