@@ -1,10 +1,13 @@
-from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView
+from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView, QMessageBox
 from PySide6.QtSql import QSqlQueryModel, QSqlQuery
 from reg_user import RegUsers
+import hashlib
 
 class MainWindow(QDialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        
+        self.session = False
 
         self.register_button = QPushButton("🐖 ZAREJESTRUJ SIĘ 🐖")
         self.register_button.clicked.connect(self.show_registration_dialog)
@@ -13,8 +16,12 @@ class MainWindow(QDialog):
         self.logout_button = QPushButton("🐖 WYLOGUJ SIĘ 🐖")
         self.logout_button.clicked.connect(self.logout)
         
+        self.login_edit = QLineEdit()
+        self.password_edit = QLineEdit()
+        self.password_edit.setEchoMode(QLineEdit.Password)
+          
         self.model = QSqlQueryModel()
-        self.refresh_guinea_pigs()
+        self.swinka_w_bazie()
         self.table_view = QTableView()
         self.table_view.setModel(self.model)
         
@@ -32,7 +39,7 @@ class MainWindow(QDialog):
         layout.addWidget(self.table_view)
         self.setLayout(layout)
         
-    def refresh_guinea_pigs(self):
+    def swinka_w_bazie(self):
         query = QSqlQuery("SELECT * FROM guinea_pigs WHERE rented = 0")
         self.model.setQuery(query)
 
@@ -41,7 +48,9 @@ class MainWindow(QDialog):
         dialog.exec_()
 
     def login(self):
-        print("Zalogowano użytkownika")
+        QMessageBox.information(self, "Informacja", "ZALOGOWANO UŻYTKOWNIKA")
 
     def logout(self):
+        self.session = False
         print("Wylogowano użytkownika")
+        QMessageBox.information(self, "Informacja", "Wylogowano użytkownika")

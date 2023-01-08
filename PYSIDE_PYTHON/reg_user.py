@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView
+from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView, QMessageBox
 from PySide6.QtSql import QSqlQueryModel, QSqlQuery
 
 class RegUsers(QDialog):
@@ -27,7 +27,8 @@ class RegUsers(QDialog):
         self.cancel_button.clicked.connect(self.reject)
         button_box.addWidget(self.cancel_button)
         
-        
+        self.register_button.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
+        self.cancel_button.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
 
         # layout laczenie all
         layout = QVBoxLayout(self)
@@ -41,3 +42,4 @@ class RegUsers(QDialog):
 
         print(f"Zarejestrowano nowego użytkownika: {name}, {email}, {password}")
         self.accept()
+        QMessageBox.information(self, "Informacja", "ZAREJESTROWANO UZYTKOWNIKA!")
