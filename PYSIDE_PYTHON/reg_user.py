@@ -1,4 +1,3 @@
-import sys
 from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView
 from PySide6.QtSql import QSqlQueryModel, QSqlQuery
 
@@ -9,20 +8,26 @@ class RegUsers(QDialog):
         # layout formularza rejestracyjnego
         form = QFormLayout()
         self.name_edit = QLineEdit()
-        form.addRow("Imię:", self.name_edit)
+        form.addRow("IMIE 🐷:", self.name_edit)
         self.email_edit = QLineEdit()
-        form.addRow("Email:", self.email_edit)
+        form.addRow("EMAIL 🐷:", self.email_edit)
         self.password_edit = QLineEdit()
         self.password_edit.setEchoMode(QLineEdit.Password)
-        form.addRow("Hasło:", self.password_edit)
+        form.addRow("HASŁO 🐷:", self.password_edit)
+        
+        self.name_edit.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
+        self.email_edit.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
+        self.password_edit.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
 
         button_box = QHBoxLayout()
-        self.register_button = QPushButton("Zarejestruj się")
+        self.register_button = QPushButton("🐷 ZAREJESTRUJ SIĘ 🐷")
         self.register_button.clicked.connect(self.register)
         button_box.addWidget(self.register_button)
-        self.cancel_button = QPushButton("Anuluj")
+        self.cancel_button = QPushButton("🐷 ANULUJ 🐷")
         self.cancel_button.clicked.connect(self.reject)
         button_box.addWidget(self.cancel_button)
+        
+        
 
         # layout laczenie all
         layout = QVBoxLayout(self)
