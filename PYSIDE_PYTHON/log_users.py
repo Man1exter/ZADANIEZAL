@@ -1,7 +1,9 @@
 from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView, QMessageBox
 from PySide6.QtSql import QSqlQueryModel, QSqlQuery
 from reg_user import RegUsers
+from login_pass_menu import MenuPassLog
 import hashlib
+import sys
 
 class MainWindow(QDialog):
     def __init__(self, *args, **kwargs):
@@ -48,9 +50,11 @@ class MainWindow(QDialog):
         dialog.exec_()
 
     def login(self):
-        QMessageBox.information(self, "Informacja", "ZALOGOWANO UŻYTKOWNIKA")
+        dialog_menu = MenuPassLog(self)
+        dialog_menu.exec_()
 
     def logout(self):
         self.session = False
         print("Wylogowano użytkownika")
         QMessageBox.information(self, "Informacja", "Wylogowano użytkownika")
+        sys.exit()
