@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView, QMessageBox
 from PySide6.QtSql import QSqlQueryModel, QSqlQuery
-
+import hashlib
 class RegUsers(QDialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -34,12 +34,17 @@ class RegUsers(QDialog):
         layout = QVBoxLayout(self)
         layout.addLayout(form)
         layout.addLayout(button_box)
+        # layout.addWidget(self.password_edit)
+        
 
     def register(self):
         name = self.name_edit.text()
         email = self.email_edit.text()
         password = self.password_edit.text()
-
+        
         print(f"Zarejestrowano nowego użytkownika: {name}, {email}, {password}")
         self.accept()
-        QMessageBox.information(self, "Informacja", "ZAREJESTROWANO UZYTKOWNIKA!")
+        
+        hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+
+        QMessageBox.information(self,"Hashed password",hashed_password)
