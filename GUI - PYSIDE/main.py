@@ -4,7 +4,7 @@ from interface_Start import LoginWindowUser
 
 if __name__ == "__main__":
     app = QApplication([])
-    app.setApplicationName("WYNAJEM SWINEK NA GODZINE")
+    app.setApplicationName("WYNAJEM SWINEK NA GODZINE v1.0.1")
     
     # stworzona instancja
     login_widget = LoginWindowUser() 

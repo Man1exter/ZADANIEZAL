@@ -10,6 +10,7 @@ class LoginWindowUser(QWidget):
         self.line_edit_password = QLineEdit()
         # self.line_edit_password.setEchoMode(QLineEdit.Password) # zakropkowanie wpisanego hasla
         self.button_login = QPushButton("🐽ZALOGUJ🐽")
+        self.button_register = QPushButton("🐽🐽ZAREJESTRUJ SIĘ🐽🐽")
         # self.setFixedHeight(width(width=600))
         
         # kolorki ziuuu - text
@@ -22,6 +23,7 @@ class LoginWindowUser(QWidget):
         
         # kolorki ziuu - logowanie zaloguj button
         self.button_login.setStyleSheet("background-color: pink;color: yellow; font-weight: bold; font-size: 19px;")
+        self.button_register.setStyleSheet("background-color: pink;color: yellow; font-weight: bold; font-size: 19px;")
         
         # layout i elementy do niego
         layout = QVBoxLayout()
@@ -31,24 +33,9 @@ class LoginWindowUser(QWidget):
         layout.addWidget(self.label_password)
         layout.addWidget(self.line_edit_password)
         layout.addWidget(self.button_login)
+        layout.addWidget(self.button_register)
         
         # layout na widget
         self.setLayout(layout)
             
         # window.resize(x,y) -> zmiana rozmiaru okna
-        
-        
-if __name__ == "__main__":
-    app = QApplication([])
-    app.setApplicationName("WYNAJEM SWINEK NA GODZINE")
-    
-    # stworzona instancja
-    login_widget = LoginWindowUser() 
-    
-    login_widget.resize(500, 400)
-    login_widget.setStyleSheet("background-color: black;")
-    #login_widget.setStyleSheet("color: red; font-weight: bold; font-size: 30px;")
-
-    login_widget.show()
-    
-    app.exec()
