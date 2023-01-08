@@ -1,7 +1,8 @@
 from PySide6.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout
+
 class LoginWindowUser(QWidget):
     def __init__(self):
-        super().__init__()
+        super(LoginWindowUser,self).__init__()
         
         # elementy interfejsu
         self.label_username = QLabel("                     NAZWA UŻYTKOWNIKA🐷:")
@@ -11,6 +12,7 @@ class LoginWindowUser(QWidget):
         self.line_edit_password.setEchoMode(QLineEdit.Password) # zakropkowanie wpisanego hasla
         self.button_login = QPushButton("🐽ZALOGUJ🐽")
         self.button_register = QPushButton("🐽🐽ZAREJESTRUJ SIĘ🐽🐽")
+        
         # self.setFixedHeight(width(width=600))
         
         # kolorki ziuuu - text
@@ -24,7 +26,7 @@ class LoginWindowUser(QWidget):
         # kolorki ziuu - logowanie zaloguj button
         self.button_login.setStyleSheet("background-color: pink;color: yellow; font-weight: bold; font-size: 19px;")
         self.button_register.setStyleSheet("background-color: pink;color: yellow; font-weight: bold; font-size: 19px;")
-        
+            
         # layout i elementy do niego
         layout = QVBoxLayout()
         
