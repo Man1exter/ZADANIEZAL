@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushBut
 
 class RegWindowUser(QWidget):
     def __init__(self):
-        super().__init__()
+        super(RegWindowUser,self).__init__()
         
         # elementy interfejsu
         self.label_username = QLabel("                     NAZWA UŻYTKOWNIKA🐷:")
