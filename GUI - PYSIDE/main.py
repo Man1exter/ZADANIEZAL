@@ -1,10 +1,11 @@
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QtGui, QtCore
+from PySide6.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout
 from interface_login import LoginWindowUser
+from interface_reg import RegWindowUser
 
 
 if __name__ == "__main__":
-    app = QApplication([])
-    app.setApplicationName("WYNAJEM SWINEK NA GODZINE v1.0.1")
+    app_login = QApplication([])
+    app_login.setApplicationName("WYNAJEM SWINEK NA GODZINE v1.0.1")
     
     # stworzona instancja
     login_widget = LoginWindowUser() 
@@ -15,4 +16,4 @@ if __name__ == "__main__":
 
     login_widget.show()
     
-    app.exec()
+    app_login.exec()
