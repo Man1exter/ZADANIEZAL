@@ -12,7 +12,7 @@ class ShowAllUsers(QWidget):
         self.table.setRowCount(0) # nieograniczone wiersze
         
         #for i in range(10):
-            #for j in range(10):  # dodawanie le do tabelki!
+            #for j in range(10):  # dodawanie ele do tabelki!
                 #item = QTableWidgetItem(f"({i}, {j})")
                 #self.table.setItem(i, j, item)
 

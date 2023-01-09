@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView, QMessageBox, QTableWidget, QTableWidgetItem, QWidget
 from PySide6.QtGui import QIcon
+from show_users import ShowAllUsers
 
 class MenuPassLog(QDialog):
     def __init__(self, *args, **kwargs):
@@ -25,6 +26,7 @@ class MenuPassLog(QDialog):
         
     def confirmation_pass(self):
         self.accept()
+        meth_base = ShowAllUsers(self)
         QMessageBox.information(self, "Informacja", "ZALOGOWANO UŻYTKOWNIKA")
         
         # jezeli login i haslo to h:admin l:admin wyswietl wszystkich uzytkownikow do modyfikacji ich

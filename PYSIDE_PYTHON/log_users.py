@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVB
 from PySide6.QtSql import QSqlQueryModel, QSqlQuery
 from reg_user import RegUsers
 from login_pass_menu import MenuPassLog
+from show_users import ShowAllUsers
 import hashlib
 import sys
 
@@ -51,6 +52,7 @@ class MainWindow(QDialog):
 
     def login(self):
         dialog_menu = MenuPassLog(self)
+        # meth_base = ShowAllUsers(self) -> wyswietli baze ale nie zamknie okien
         dialog_menu.exec_()
 
     def logout(self):
