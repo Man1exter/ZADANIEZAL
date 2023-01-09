@@ -1,0 +1,15 @@
+Aplikacja powinna posiadać następujące funkcje:
+
+# 1. Rejestracja użytkownika 
+
+# 2. Logowanie użytkownika(sprawdzanie hashu hasła zamiast hasła w bazie)
+
+3. Dodawanie / edycja / usuwanie użytkowników
+
+4. Wyświetlanie listy użytkowników
+
+5. Obsługarelacyjnejbazy danych (przy pomocy SQL Alchemy lubinnego narzędzia)
+
+6. Bazadanych z co najmniej jedną relacją jeden do wielu(np.jeden użytkownik –wiele wypożyczeń, jednaksiążka-wielu wypożyczeń)
+
+# 7. GUI –webowe (Django, Fast API,Flask) lubokienkowe (PyQT)
