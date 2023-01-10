@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView, QMessageBox, QTableWidget, QTableWidgetItem
-from PySide6.QtSql import QSqlQueryModel, QSqlQuery
+from PySide6.QtWidgets import *
+from PySide6.QtSql import *
 from show_users import ShowAllUsers
 import hashlib
 class RegUsers(QDialog):

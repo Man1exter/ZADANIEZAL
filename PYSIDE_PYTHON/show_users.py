@@ -1,6 +1,7 @@
-from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView, QMessageBox, QTableWidget, QTableWidgetItem, QWidget
+from PySide6.QtWidgets import *
 from PySide6.QtGui import QColor
 from PySide6.QtGui import QIcon
+from PyQt5.QtWidgets import * 
 
 class ShowAllUsers(QWidget):
     def __init__(self, *args, **kwargs):
@@ -9,12 +10,7 @@ class ShowAllUsers(QWidget):
         self.table = QTableWidget()
         
         self.table.setColumnCount(2) # nieograniczone kolumny max [3 -> od 0]
-        self.table.setRowCount(0) # nieograniczone wiersze
-        
-        #for i in range(10):
-            #for j in range(10):  # dodawanie ele do tabelki!
-                #item = QTableWidgetItem(f"({i}, {j})")
-                #self.table.setItem(i, j, item)
+        self.table.setRowCount(99) # nieograniczone wiersze, jeżeli 0 to nieograniczona ilosc
 
         # Dodaj kolumnę i wiersz do tabelki
         self.table.insertColumn(0)
@@ -27,6 +23,11 @@ class ShowAllUsers(QWidget):
         
         for i in range(3):
           self.table.setColumnWidth(i,300)
+          
+        self.table.setItem(0,0, QTableWidgetItem("Name"))
+        self.table.setItem(0,1, QTableWidgetItem("Name"))
+        self.table.setItem(1,0, QTableWidgetItem("ABC"))
+        self.table.setItem(2,0, QTableWidgetItem("ABC"))
         
         self.table.show()
         
