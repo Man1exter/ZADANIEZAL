@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView, QMessageBox
+from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView, QMessageBox, QTableWidget, QTableWidgetItem
 from PySide6.QtSql import QSqlQueryModel, QSqlQuery
 from reg_user import RegUsers
 from login_pass_menu import MenuPassLog
@@ -52,8 +52,11 @@ class MainWindow(QDialog):
 
     def login(self):
         dialog_menu = MenuPassLog(self)
+        
         # meth_base = ShowAllUsers(self) -> wyswietli baze ale nie zamknie okien
+        
         dialog_menu.exec_()
+        
 
     def logout(self):
         self.session = False

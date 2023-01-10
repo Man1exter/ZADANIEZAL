@@ -26,11 +26,11 @@ class MenuPassLog(QDialog):
         
     def confirmation_pass(self):
         self.accept()
-        meth_base = ShowAllUsers(self)
-        QMessageBox.information(self, "Informacja", "ZALOGOWANO UŻYTKOWNIKA")
-        
-        # jezeli login i haslo to h:admin l:admin wyswietl wszystkich uzytkownikow do modyfikacji ich
-        # jezeli to random osoba przejdz do wynajmu swinek
+        if self.name_edit.text() == "admin" and self.password_edit.text() == "admin":
+            meth_base = ShowAllUsers(self)
+            QMessageBox.information(self, "Informacja", "ZALOGOWANO JAKO ADMINISTRATOR SYSTEMU!")
+        else:
+            QMessageBox.information(self, "Informacja", "ZALOGOWANO UŻYTKOWNIKA!")
         
         
         

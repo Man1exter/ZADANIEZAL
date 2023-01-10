@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView, QMessageBox
+from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView, QMessageBox, QTableWidget, QTableWidgetItem
 from PySide6.QtSql import QSqlQueryModel, QSqlQuery
 from show_users import ShowAllUsers
 import hashlib
@@ -49,3 +49,6 @@ class RegUsers(QDialog):
         hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
 
         QMessageBox.information(self,"Hashed password",hashed_password)
+        QMessageBox.information(self,"information","ZAREJESTROWANO UŻYTKOWNIKA!")
+        
+        # jezeli dany uzytkownik z tym samym emailem istnieje nie dodawaj do bazy i pokaz blad ze taki juz istnieje

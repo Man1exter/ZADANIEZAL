@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView
+from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableView, QHeaderView, QTableWidget, QTableWidgetItem
 from PySide6.QtSql import QSqlQueryModel, QSqlQuery
 from PySide6.QtGui import QIcon
 #from reg_user import RegUsers
