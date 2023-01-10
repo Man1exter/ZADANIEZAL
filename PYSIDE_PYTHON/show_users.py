@@ -9,6 +9,9 @@ class ShowAllUsers(QWidget):
         
         self.table = QTableWidget()
         
+        self.col = 0
+        self.row = 0
+        
         self.table.setColumnCount(2) # nieograniczone kolumny max [3 -> od 0]
         self.table.setRowCount(99) # nieograniczone wiersze, jeżeli 0 to nieograniczona ilosc
 
@@ -19,16 +22,22 @@ class ShowAllUsers(QWidget):
         self.table.setHorizontalHeaderLabels(["IMIE:","NAZWISKO:","EMAIL:"])
 
         # Wyświetl tabelkę
-        self.table.resize(925,550)
+        self.table.resize(1000,600)
         
         for i in range(3):
           self.table.setColumnWidth(i,300)
           
-        self.table.setItem(0,0, QTableWidgetItem("Name"))
-        self.table.setItem(0,1, QTableWidgetItem("Name"))
-        self.table.setItem(1,0, QTableWidgetItem("ABC"))
-        self.table.setItem(2,0, QTableWidgetItem("ABC"))
+        # zawartość w tabelce
+          
+        for im in range(3):
+            self.table.setItem(im,0, QTableWidgetItem("IMIE"))
+
+        for naz in range(3):
+            self.table.setItem(naz,0+im-1, QTableWidgetItem("NAZWISKO"))
         
+        for em in range(3):
+            self.table.setItem(em-1,(0+im)+3, QTableWidgetItem("EMAIL"))
+ 
         self.table.show()
         
         
