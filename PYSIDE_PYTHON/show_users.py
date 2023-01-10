@@ -1,9 +1,10 @@
+from PyQt5.QtWidgets import * 
 from PySide6.QtWidgets import *
 from PySide6.QtGui import QColor
 from PySide6.QtGui import QIcon
-from PyQt5.QtWidgets import * 
 
-class ShowAllUsers(QWidget):
+
+class ShowAllUsers(QDialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
@@ -19,7 +20,7 @@ class ShowAllUsers(QWidget):
         self.table.insertColumn(0)
         self.table.insertRow(0)
         
-        self.table.setHorizontalHeaderLabels(["IMIE:","NAZWISKO:","EMAIL:"])
+        self.table.setHorizontalHeaderLabels(["IMIE:","HASŁO:","EMAIL:"])
 
         # Wyświetl tabelkę
         self.table.resize(1000,600)
@@ -29,14 +30,14 @@ class ShowAllUsers(QWidget):
           
         # zawartość w tabelce
           
-        for im in range(3):
+        for im in range(4):
             self.table.setItem(im,0, QTableWidgetItem("IMIE"))
 
-        for naz in range(3):
-            self.table.setItem(naz,0+im-1, QTableWidgetItem("NAZWISKO"))
+        for naz in range(4):
+            self.table.setItem(naz,0+im-2, QTableWidgetItem("NAZWISKO"))
         
-        for em in range(3):
-            self.table.setItem(em-1,(0+im)+3, QTableWidgetItem("EMAIL"))
+        for em in range(4):
+            self.table.setItem(em-2,(1+im)+4, QTableWidgetItem("EMAIL"))
  
         self.table.show()
         

@@ -1,1 +1,2 @@
-QTableWidget, QTableWidgetItem
+indow.show()
+    program.exec()

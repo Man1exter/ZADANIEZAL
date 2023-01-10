@@ -49,6 +49,16 @@ class RegUsers(QDialog):
         hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
 
         QMessageBox.information(self,"Hashed password",hashed_password)
+        
         QMessageBox.information(self,"information","ZAREJESTROWANO UŻYTKOWNIKA!")
+        
+        #for im in range(3):
+            #self.table.setItem(im,0, QTableWidgetItem("IMIE"))
+
+        #for naz in range(3):
+            #self.table.setItem(naz,0+im-1, QTableWidgetItem("NAZWISKO"))
+        
+        #for em in range(3):
+            #self.table.setItem(em-1,(0+im)+3, QTableWidgetItem("EMAIL"))
         
         # jezeli dany uzytkownik z tym samym emailem istnieje nie dodawaj do bazy i pokaz blad ze taki juz istnieje

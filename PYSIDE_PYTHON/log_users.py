@@ -53,8 +53,6 @@ class MainWindow(QDialog):
     def login(self):
         dialog_menu = MenuPassLog(self)
         
-        # meth_base = ShowAllUsers(self) -> wyswietli baze ale nie zamknie okien
-        
         dialog_menu.exec_()
         
 
