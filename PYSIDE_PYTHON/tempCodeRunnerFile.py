@@ -1,1 +1,1 @@
-setWindowTitle("🐷 WYPOŻYCZALNIA ŚWINEK")
+self.table = QTableWidget()

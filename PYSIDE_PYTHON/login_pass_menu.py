@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import *
 from PySide6.QtGui import QIcon
-from show_users import ShowAllUsers
+from reg_user import ShowAllUsers
 
 class MenuPassLog(QDialog):
     def __init__(self, *args, **kwargs):
@@ -31,6 +31,7 @@ class MenuPassLog(QDialog):
             window = ShowAllUsers(self)
         else:
             QMessageBox.information(self, "Informacja", "ZALOGOWANO UŻYTKOWNIKA!")
+            # sekcja do wywolania programu do wynajmu swinek jak wyzej 
         
         
         

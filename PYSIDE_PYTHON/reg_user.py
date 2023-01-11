@@ -2,8 +2,12 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication
 from PySide6.QtWidgets import *
 from PySide6.QtSql import *
-from show_users import ShowAllUsers
 import hashlib
+from PyQt5.QtWidgets import * 
+from PySide6.QtWidgets import *
+from PySide6.QtGui import QColor
+from PySide6.QtGui import QIcon
+import sqlite3
 class RegUsers(QDialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -53,5 +57,57 @@ class RegUsers(QDialog):
         
         QMessageBox.information(self,"information","ZAREJESTROWANO UŻYTKOWNIKA W BAZIE!")
         
-        people = [{"IMIE":self.name_edit.text(),"EMAIL":self.email_edit.text(),"HASŁO":hashed_password}]
+        #people = [{"IMIE":self.name_edit.text(),"EMAIL":self.email_edit.text(),"HASŁO":hashed_password}]
+        #row = 0
+        #for person in people:
+            #self.table.setItem(row,0,QtWidgets.QTableWidgetItem(person["IMIE"]))
+            #self.table.setItem(row,0,QtWidgets.QTableWidgetItem(person["HASŁO"]))
+            #self.table.setItem(row,0,QtWidgets.QTableWidgetItem(person["EMAIL"]))
+            #row = row + 1
+            
+            
+class ShowAllUsers(QDialog):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        self.table = QTableWidget()
+        
+        self.col = 0
+        self.row = 0
+        
+        self.table.setColumnCount(3) # nieograniczone kolumny max [3 -> od 0]
+        self.table.setRowCount(99) # nieograniczone wiersze, jeżeli 0 to nieograniczona ilosc
+
+        # Dodaj kolumnę i wiersz do tabelki
+        self.table.insertColumn(0)
+        self.table.insertRow(0)
+        
+        self.table.setHorizontalHeaderLabels(["IMIE:","HASŁO:","EMAIL:","ILOŚĆ ŚWINEK"])
+
+        # Wyświetl tabelkę (zmiana rozmiaru)
+        self.table.resize(1200,700)
+        
+        for i in range(3):
+          self.table.setColumnWidth(i,300)      
+            
+    # def loaddata - ładowanie z bazy danych do tabelki pyside6
+      #con = sqlite3.connect("data.sqlite")
+      # cursor = con.cursor()
+      # sqlquery = " SELECT * FROM worldcities LIMIT 50"
+      
+      # self.tableWidget.setRowCount(50)
+      # tablerow = 0
+      # for row in cur.execute(sqlquer):
+        ##self.tableWidget.setItem(tablerow,0,QtWidgets.QTableWidgetItem(row[0]))
+            #self.tableWidget.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[0]))
+            #self.tableWidget.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[0]))
+            # tablerow += 1
+            
+        self.table.show()
+        
+#if __name__ == "__main__":
+    #program = QApplication([])
+    #window = ShowAllUsers()
+    #program.exec()
+        
 
