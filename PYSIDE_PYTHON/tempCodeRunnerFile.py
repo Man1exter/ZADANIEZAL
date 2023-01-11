@@ -1,2 +1,1 @@
-indow.show()
-    program.exec()
+setWindowTitle("🐷 WYPOŻYCZALNIA ŚWINEK")

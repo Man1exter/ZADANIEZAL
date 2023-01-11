@@ -1,3 +1,5 @@
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QDialog, QApplication
 from PySide6.QtWidgets import *
 from PySide6.QtSql import *
 from show_users import ShowAllUsers
@@ -15,7 +17,7 @@ class RegUsers(QDialog):
         self.password_edit = QLineEdit()
         self.password_edit.setEchoMode(QLineEdit.Password)
         form.addRow("HASŁO 🐷:", self.password_edit)
-        
+            
         self.name_edit.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
         self.email_edit.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
         self.password_edit.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
@@ -37,7 +39,6 @@ class RegUsers(QDialog):
         layout.addLayout(button_box)
         # layout.addWidget(self.password_edit)
         
-
     def register(self):
         name = self.name_edit.text()
         email = self.email_edit.text()
@@ -50,15 +51,7 @@ class RegUsers(QDialog):
 
         QMessageBox.information(self,"Hashed password",hashed_password)
         
-        QMessageBox.information(self,"information","ZAREJESTROWANO UŻYTKOWNIKA!")
+        QMessageBox.information(self,"information","ZAREJESTROWANO UŻYTKOWNIKA W BAZIE!")
         
-        #for im in range(3):
-            #self.table.setItem(im,0, QTableWidgetItem("IMIE"))
+        people = [{"IMIE":self.name_edit.text(),"EMAIL":self.email_edit.text(),"HASŁO":hashed_password}]
 
-        #for naz in range(3):
-            #self.table.setItem(naz,0+im-1, QTableWidgetItem("NAZWISKO"))
-        
-        #for em in range(3):
-            #self.table.setItem(em-1,(0+im)+3, QTableWidgetItem("EMAIL"))
-        
-        # jezeli dany uzytkownik z tym samym emailem istnieje nie dodawaj do bazy i pokaz blad ze taki juz istnieje

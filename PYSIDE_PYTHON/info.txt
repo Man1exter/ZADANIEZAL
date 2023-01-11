@@ -6,10 +6,25 @@ Aplikacja powinna posiadać następujące funkcje:
 
 3. Dodawanie / edycja / usuwanie użytkowników
 
-4. Wyświetlanie listy użytkowników
+# 4. Wyświetlanie listy użytkowników
 
 5. Obsługarelacyjnejbazy danych (przy pomocy SQL Alchemy lubinnego narzędzia)
 
 6. Bazadanych z co najmniej jedną relacją jeden do wielu(np.jeden użytkownik –wiele wypożyczeń, jednaksiążka-wielu wypożyczeń)
 
 # 7. GUI –webowe (Django, Fast API,Flask) lubokienkowe (PyQT)
+
+# zawartość w tabelce
+        
+        #self.loaddata()
+        
+    #def loaddata(self):
+        #people = [{"name":"JOHN"}] #itd
+        #row = 0
+        
+        #for p in people:
+            #self.tableWidget.setItem(row,0,QtWidgets.QTableWidgetItem(p["name"]))
+            #self.tableWidget.setItem(row,1,QtWidgets.QTableWidgetItem(p["age"]))
+            #self.tableWidget.setItem(row,2,QtWidgets.QTableWidgetItem(p["nick"]))
+            
+            #row = row + 1

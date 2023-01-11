@@ -27,25 +27,7 @@ class ShowAllUsers(QDialog):
         self.table.resize(1000,600)
         
         for i in range(3):
-          self.table.setColumnWidth(i,300)
-          
-          
-          
-        # zawartość w tabelce
-        
-        #self.loaddata()
-        
-    #def loaddata(self):
-        #people = [{"name":"JOHN"}] #itd
-        #row = 0
-        
-        #for p in people:
-            #self.tableWidget.setItem(row,0,QtWidgets.QTableWidgetItem(p["name"]))
-            #self.tableWidget.setItem(row,1,QtWidgets.QTableWidgetItem(p["age"]))
-            #self.tableWidget.setItem(row,2,QtWidgets.QTableWidgetItem(p["nick"]))
-            
-            #row = row + 1
-            
+          self.table.setColumnWidth(i,300)      
             
     # def loaddata - ładowanie z bazy danych do tabelki pyside6
       #con = sqlite3.connect("data.sqlite")
