@@ -21,7 +21,11 @@ class RegUsers(QDialog):
         self.password_edit = QLineEdit()
         self.password_edit.setEchoMode(QLineEdit.Password)
         form.addRow("HASŁO 🐷:", self.password_edit)
-            
+        
+        self.name = ""
+        self.email = ""
+        self.password = ""
+                 
         self.name_edit.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
         self.email_edit.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
         self.password_edit.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
@@ -44,19 +48,30 @@ class RegUsers(QDialog):
         # layout.addWidget(self.password_edit)
         
     def register(self):
-        name = self.name_edit.text()
-        email = self.email_edit.text()
-        password = self.password_edit.text()
+        self.name = self.name_edit.text()
+        self.email = self.email_edit.text()
+        self.password = self.password_edit.text()
         
-        print(f"Zarejestrowano nowego użytkownika: {name}, {email}, {password}")
+        print(f"Zarejestrowano nowego użytkownika: {self.name}, {self.email}, {self.password}")
         self.accept()
         
-        hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        self.hashed_password = hashlib.sha256(self.password.encode('utf-8')).hexdigest()
 
-        QMessageBox.information(self,"Hashed password",hashed_password)
+        QMessageBox.information(self,"Hashed password",self.hashed_password)
         
         QMessageBox.information(self,"information","ZAREJESTROWANO UŻYTKOWNIKA W BAZIE!")
         
+        self.conn = sqlite3.connect('mydatabase.db')
+        self.cursor = self.conn.cursor()
+        
+        self.cursor.execute('''CREATE TABLE IF NOT EXISTS UŻYTKOWNICY (IMIE TEXT, EMAIL TEXT, HASLO TEXT)''')
+        self.conn.commit()
+        
+        self.cursor.execute('''INSERT INTO UŻYTKOWNICY (IMIE, EMAIL, HASLO) VALUES (?,?,?)''', (self.name, self.email, self.hashed_password))
+        self.conn.commit()
+        
+        self.conn.close()
+                
         #people = [{"IMIE":self.name_edit.text(),"EMAIL":self.email_edit.text(),"HASŁO":hashed_password}]
         #row = 0
         #for person in people:
@@ -69,14 +84,14 @@ class RegUsers(QDialog):
 class ShowAllUsers(QDialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
+    
         self.table = QTableWidget()
         
         self.col = 0
         self.row = 0
         
-        self.table.setColumnCount(3) # nieograniczone kolumny max [3 -> od 0]
-        self.table.setRowCount(99) # nieograniczone wiersze, jeżeli 0 to nieograniczona ilosc
+        self.table.setColumnCount(3) 
+        self.table.setRowCount(99) 
 
         # Dodaj kolumnę i wiersz do tabelki
         self.table.insertColumn(0)
@@ -89,7 +104,7 @@ class ShowAllUsers(QDialog):
         
         for i in range(3):
           self.table.setColumnWidth(i,300)      
-            
+          
     # def loaddata - ładowanie z bazy danych do tabelki pyside6
       #con = sqlite3.connect("data.sqlite")
       # cursor = con.cursor()
