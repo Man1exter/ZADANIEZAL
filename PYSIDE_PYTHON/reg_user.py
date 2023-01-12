@@ -56,31 +56,27 @@ class RegUsers(QDialog):
         self.accept()
         
         self.hashed_password = hashlib.sha256(self.password.encode('utf-8')).hexdigest()
-
-        QMessageBox.information(self,"Hashed password",self.hashed_password)
-        
-        QMessageBox.information(self,"information","ZAREJESTROWANO UŻYTKOWNIKA W BAZIE!")
-        
+ 
         self.conn = sqlite3.connect('mydatabase.db')
         self.cursor = self.conn.cursor()
         
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS UŻYTKOWNICY (IMIE TEXT, EMAIL TEXT, HASLO TEXT)''')
         self.conn.commit()
         
-        self.cursor.execute('''INSERT INTO UŻYTKOWNICY (IMIE, EMAIL, HASLO) VALUES (?,?,?)''', (self.name, self.email, self.hashed_password))
-        self.conn.commit()
+        self.cursor.execute('''SELECT * FROM UŻYTKOWNICY WHERE IMIE=? AND EMAIL=?''', (self.name, self.email))
         
+        self.user_base = self.cursor.fetchone()
+        
+        if self.user_base:
+            QMessageBox.warning(self, "Uwaga", f"Użytkownik {self.name} już istnieje!")
+        else:
+            self.cursor.execute('''INSERT INTO UŻYTKOWNICY (IMIE, EMAIL, HASLO) VALUES (?,?,?)''', (self.name, self.email, self.hashed_password))
+            QMessageBox.information(self,"information","ZAREJESTROWANO UŻYTKOWNIKA W BAZIE!")
+            QMessageBox.information(self,"Hashed password",self.hashed_password)
+        
+        self.conn.commit()
         self.conn.close()
-                
-        #people = [{"IMIE":self.name_edit.text(),"EMAIL":self.email_edit.text(),"HASŁO":hashed_password}]
-        #row = 0
-        #for person in people:
-            #self.table.setItem(row,0,QtWidgets.QTableWidgetItem(person["IMIE"]))
-            #self.table.setItem(row,0,QtWidgets.QTableWidgetItem(person["HASŁO"]))
-            #self.table.setItem(row,0,QtWidgets.QTableWidgetItem(person["EMAIL"]))
-            #row = row + 1
-            
-            
+                        
 class ShowAllUsers(QDialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
