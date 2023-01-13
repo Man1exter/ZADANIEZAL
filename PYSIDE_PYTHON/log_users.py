@@ -2,7 +2,7 @@ from PySide6.QtWidgets import *
 from PySide6.QtSql import *
 from reg_user import RegUsers
 from login_pass_menu import MenuPassLog
-from show_users import ShowAllUsers
+from reg_user import ShowAllUsers
 import hashlib
 import sys
 
@@ -55,7 +55,6 @@ class MainWindow(QDialog):
         
         dialog_menu.exec_()
         
-
     def logout(self):
         self.session = False
         print("Wylogowano użytkownika")
