@@ -3,6 +3,8 @@ from PyQt5.QtWidgets import *
 from PySide6.QtWidgets import *
 from PySide6.QtSql import *
 from PySide6.QtGui import QIcon
+import sqlite3
+import sys
 
 class Piggy(QDialog):
     def __init__(self, *args, **kwargs):
@@ -37,6 +39,7 @@ class Piggy(QDialog):
         self.cancel_button = QPushButton("🐷 ANULUJ WYNAJEM 🐷")
         self.cancel_button.clicked.connect(self.reject)
         button_box.addWidget(self.cancel_button)
+        self.cancel_button.clicked.connect(self.del_pig_con)
         
         self.accept_pig.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
         self.cancel_button.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
@@ -45,8 +48,32 @@ class Piggy(QDialog):
         layout.addLayout(form)
         layout.addLayout(button_box)
         
+        
     def accept_pig_confirm(self):
-        QMessageBox.warning(self, "Uwaga", "WYNAJEM ZAAKCEPTOWANY")
+        QMessageBox.warning(self, "Uwaga", "WYNAJEM ZAAKCEPTOWANY") 
+        
+        self.conn = sqlite3.connect('mydatabase.db')
+        self.cursor = self.conn.cursor()
+
+        self.cursor.execute("PRAGMA table_info(UŻYTKOWNICY)")
+        columns = [tup[1] for tup in self.cursor.fetchall()]
+
+        columns_to_add = ["PROSIAK", "WIETNAMKA", "SKARBONKA", "CHRUMKA", "SYBERYJSKA", "KAMBODŻANSKA"]
+
+        for column in columns_to_add:
+           if column not in columns:
+              self.cursor.execute(f"ALTER TABLE UŻYTKOWNICY ADD COLUMN {column} TEXT")
+              print(f"Column '{column}' added to table 'UŻYTKOWNICY'.")
+        else:
+           print(f"Column '{column}' already exists in table 'UŻYTKOWNICY'.")
+
+        self.conn.commit()
+        self.conn.close()
+        
+        sys.exit()
+        
+    def del_pig_con(self):
+        QMessageBox.warning(self, "Uwaga", "WYNAJEM ANULOWANY")
         
         
 #if __name__ == "__main__":

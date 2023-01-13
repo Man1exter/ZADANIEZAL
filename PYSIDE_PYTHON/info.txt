@@ -4,11 +4,11 @@ Aplikacja powinna posiadać następujące funkcje:
 
 # 2. Logowanie użytkownika(sprawdzanie hashu hasła zamiast hasła w bazie)
 
-3. Dodawanie / edycja / usuwanie użytkowników
+# 3. Dodawanie / edycja / usuwanie użytkowników
 
 # 4. Wyświetlanie listy użytkowników
 
-5. Obsługarelacyjnejbazy danych (przy pomocy SQL Alchemy lubinnego narzędzia)
+# 5. Obsługarelacyjnejbazy danych (przy pomocy SQL Alchemy lubinnego narzędzia)
 
 6. Bazadanych z co najmniej jedną relacją jeden do wielu(np.jeden użytkownik –wiele wypożyczeń, jednaksiążka-wielu wypożyczeń)
 

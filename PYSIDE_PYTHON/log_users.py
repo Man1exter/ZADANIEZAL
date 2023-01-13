@@ -55,7 +55,6 @@ class MainWindow(QDialog):
         
         dialog_menu.exec_()
         
-
     def logout(self):
         self.session = False
         print("Wylogowano użytkownika")

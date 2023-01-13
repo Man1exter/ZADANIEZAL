@@ -2,6 +2,7 @@ from PySide6.QtWidgets import *
 from PySide6.QtGui import QIcon
 from reg_user import ShowAllUsers
 from dz import Piggy
+import sqlite3
 
 class MenuPassLog(QDialog):
     def __init__(self, *args, **kwargs):
@@ -27,6 +28,11 @@ class MenuPassLog(QDialog):
         self.setLayout(layout)
         
     def confirmation_pass(self):
+        
+        self.conn = sqlite3.connect('mydatabase.db')
+        self.cursor = self.conn.cursor()
+        self.user_base = self.cursor.fetchone()
+        
         self.accept()
         if self.name_edit.text() == "admin" and self.password_edit.text() == "admin":
             QMessageBox.information(self, "Informacja", "ZALOGOWANO JAKO ADMINISTRATOR SYSTEMU!")
@@ -35,6 +41,10 @@ class MenuPassLog(QDialog):
             QMessageBox.information(self, "Informacja", "ZALOGOWANO UŻYTKOWNIKA!")
             winaccept = Piggy(self)
             winaccept.show()
+        
+            
+        self.conn.commit()
+        self.conn.close()
         
         
         
