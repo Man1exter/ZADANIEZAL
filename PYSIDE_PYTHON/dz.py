@@ -36,6 +36,7 @@ class Piggy(QDialog):
         self.accept_pig = QPushButton("🐷 ZATWIERDZ WYNAJEM 🐷")
         button_box.addWidget(self.accept_pig)
         self.accept_pig.clicked.connect(self.accept_pig_confirm)
+        self.accept_pig.clicked.connect(self.up_to_base)
         self.cancel_button = QPushButton("🐷 ANULUJ WYNAJEM 🐷")
         self.cancel_button.clicked.connect(self.reject)
         button_box.addWidget(self.cancel_button)
@@ -76,14 +77,17 @@ class Piggy(QDialog):
         QMessageBox.warning(self, "Uwaga", "WYNAJEM ANULOWANY")
         
         
-#if __name__ == "__main__":
-    #program = QApplication([])
-    #window = Piggy()
-    
-    #window.resize(400,300)
-    #window.setWindowTitle("🐷 WYPOŻYCZALNIA ŚWINEK")
-    #window.setStyleSheet("background-color: lightblue;")
-    #window.setWindowIcon(QIcon("pig.png"))
-    
-    #window.show()
-    #program.exec()
+    def up_to_base(self):
+        self.conn = sqlite3.connect('mydatabase.db')
+        self.cursor = self.conn.cursor()
+        
+        self.cursor.execute('''CREATE TABLE IF NOT EXISTS UŻYTKOWNICY (IMIE TEXT, EMAIL TEXT, HASLO TEXT, PROSIAK TEXT, WIETNAMKA TEXT, SKARBONKA TEXT, CHRUMKA TEXT, SYBERYJSKA TEXT, KAMBODŻANSKA TEXT)''')
+        self.conn.commit()
+        
+        self.cursor.execute('''SELECT * FROM UŻYTKOWNICY WHERE PROSIAK=? AND WIETNAMKA=? AND SKARBONKA=? AND CHRUMKA=? AND SYBERYJSKA=? AND KAMBODŻANSKA=?''', (self.pig1,self.pig2,self.pig3,self.pig4,self.pig5,self.pig6))
+        
+        self.cursor.execute('''INSERT INTO UŻYTKOWNICY (PROSIAK, WIETNAMKA, SKARBONKA, CHRUMKA, SYBERYJSKA, KAMBODŻANSKA) VALUES (?,?,?,?,?,?)''', (self.pig1,self.pig2,self.pig3,self.pig4,self.pig5,self.pig6))
+        
+        self.conn.commit()
+        self.conn.close()
+        

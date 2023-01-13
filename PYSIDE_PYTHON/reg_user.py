@@ -85,17 +85,17 @@ class ShowAllUsers(QDialog):
         self.col = 0
         self.row = 0
         
-        self.table.setColumnCount(3) 
+        self.table.setColumnCount(8) 
         self.table.setRowCount(99) 
 
         # Dodaj kolumnę i wiersz do tabelki
         self.table.insertColumn(0)
         self.table.insertRow(0)
         
-        self.table.setHorizontalHeaderLabels(["IMIE:","HASŁO:","EMAIL:","ILOŚĆ ŚWINEK"])
+        self.table.setHorizontalHeaderLabels(["IMIE:","HASŁO:","EMAIL:","PROSIAK", "WIETNAMKA", "SKARBONKA", "CHRUMKA", "SYBERYJSKA", "KAMBODŻANSKA"])
 
         # Wyświetl tabelkę (zmiana rozmiaru)
-        self.table.resize(1200,700)
+        self.table.resize(1600,850)
         
         for i in range(3):
           self.table.setColumnWidth(i,300)      
