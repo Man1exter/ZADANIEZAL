@@ -19,7 +19,6 @@ class RegUsers(QDialog):
         self.email_edit = QLineEdit()
         form.addRow("EMAIL 🐷:", self.email_edit)
         self.password_edit = QLineEdit()
-        self.password_edit.setEchoMode(QLineEdit.Password)
         form.addRow("HASŁO 🐷:", self.password_edit)
         
         self.name = ""
