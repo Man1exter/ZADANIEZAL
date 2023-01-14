@@ -10,7 +10,7 @@ Aplikacja powinna posiadać następujące funkcje:
 
 # 5. Obsługarelacyjnejbazy danych (przy pomocy SQL Alchemy lubinnego narzędzia)
 
-6. Bazadanych z co najmniej jedną relacją jeden do wielu(np.jeden użytkownik –wiele wypożyczeń, jednaksiążka-wielu wypożyczeń)
+[-]6. Bazadanych z co najmniej jedną relacją jeden do wielu(np.jeden użytkownik –wiele wypożyczeń, jednaksiążka-wielu wypożyczeń)
 
 # 7. GUI –webowe (Django, Fast API,Flask) lubokienkowe (PyQT)
 

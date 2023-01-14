@@ -1,4 +1,3 @@
-from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication
 from PySide6.QtWidgets import *
 from PySide6.QtSql import *
@@ -8,6 +7,7 @@ from PySide6.QtWidgets import *
 from PySide6.QtGui import QColor
 from PySide6.QtGui import QIcon
 import sqlite3
+from PyQt5 import QtWidgets, QtGui, QtCore
 class RegUsers(QDialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -76,29 +76,32 @@ class RegUsers(QDialog):
         self.conn.commit()
         self.conn.close()
                         
-class ShowAllUsers(QDialog):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+class ShowAllUsers(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
     
-        self.table = QTableWidget()
+        self.conn = sqlite3.connect('mydatabase.db')
+        self.cursor = self.conn.cursor()
+        self.cursor.execute("SELECT * FROM UŻYTKOWNICY")
+        data = self.cursor.fetchall()
         
-        self.col = 0
-        self.row = 0
+        self.table = QtWidgets.QTableWidget(self)
+        self.table.setRowCount(len(data))
+        self.table.setColumnCount(len(data[0]))
+        self.table.setHorizontalHeaderLabels(["IMIE", "EMAIL", "HASŁO", "PROSIAK", "WIETNAMKA", "SKARBONKA", "CHRUMKA", "SYBERYJSKA", "KAMBODŻANSKA"])
         
-        self.table.setColumnCount(8) 
-        self.table.setRowCount(99) 
-
-        # Dodaj kolumnę i wiersz do tabelki
-        self.table.insertColumn(0)
-        self.table.insertRow(0)
+        for i, d in enumerate(data):
+            for j, value in enumerate(d):
+                self.table.setItem(i, j, QtWidgets.QTableWidgetItem(str(value)))
         
-        self.table.setHorizontalHeaderLabels(["IMIE:","HASŁO:","EMAIL:","PROSIAK", "WIETNAMKA", "SKARBONKA", "CHRUMKA", "SYBERYJSKA", "KAMBODŻANSKA"])
-
-        # Wyświetl tabelkę (zmiana rozmiaru)
-        self.table.resize(1600,850)
+        self.table.resizeColumnsToContents()
+        self.table.resizeRowsToContents()
+        self.table.horizontalHeader().setStretchLastSection(True)
         
-        for i in range(3):
-          self.table.setColumnWidth(i,300)      
+        #self.table.resize(1500,1500)
+        
+        layout = QtWidgets.QVBoxLayout(self)
+        layout.addWidget(self.table)    
           
     # def loaddata - ładowanie z bazy danych do tabelki pyside6
       #con = sqlite3.connect("data.sqlite")
