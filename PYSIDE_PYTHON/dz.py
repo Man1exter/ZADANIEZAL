@@ -36,7 +36,7 @@ class Piggy(QDialog):
         self.accept_pig = QPushButton("🐷 ZATWIERDZ WYNAJEM 🐷")
         button_box.addWidget(self.accept_pig)
         self.accept_pig.clicked.connect(self.accept_pig_confirm)
-        self.accept_pig.clicked.connect(self.up_to_base)
+        #self.accept_pig.clicked.connect(self.up_to_base)
         self.cancel_button = QPushButton("🐷 ANULUJ WYNAJEM 🐷")
         self.cancel_button.clicked.connect(self.reject)
         button_box.addWidget(self.cancel_button)
@@ -53,6 +53,15 @@ class Piggy(QDialog):
     def accept_pig_confirm(self):
         QMessageBox.warning(self, "Uwaga", "WYNAJEM ZAAKCEPTOWANY") 
         
+        pig1_data = self.pig1.text()
+        pig2_data = self.pig2.text()
+        pig3_data = self.pig3.text()
+        pig4_data = self.pig4.text()
+        pig5_data = self.pig5.text()
+        pig6_data = self.pig6.text()
+        
+        selected_name = self.name_select.currentText()
+        
         self.conn = sqlite3.connect('mydatabase.db')
         self.cursor = self.conn.cursor()
 
@@ -67,6 +76,10 @@ class Piggy(QDialog):
               print(f"Column '{column}' added to table 'UŻYTKOWNICY'.")
         else:
            print(f"Column '{column}' already exists in table 'UŻYTKOWNICY'.")
+           
+           
+        self.cursor.execute("UPDATE UŻYTKOWNICY SET PROSIAK = ?, WIETNAMKA = ?, SKARBONKA = ?, CHRUMKA = ?, SYBERYJSKA = ?, KAMBODŻANSKA = ?, WHERE IMIE = ?", (pig1_data, pig2_data, pig3_data, pig4_data, pig5_data, pig6_data, selected_name))
+        self.conn.commit()
 
         self.conn.commit()
         self.conn.close()
@@ -77,17 +90,31 @@ class Piggy(QDialog):
         QMessageBox.warning(self, "Uwaga", "WYNAJEM ANULOWANY")
         
         
-    def up_to_base(self):
-        self.conn = sqlite3.connect('mydatabase.db')
-        self.cursor = self.conn.cursor()
+    #def up_to_base(self):
+        #self.conn = sqlite3.connect('mydatabase.db')
+        #self.cursor = self.conn.cursor()
         
-        self.cursor.execute('''CREATE TABLE IF NOT EXISTS UŻYTKOWNICY (IMIE TEXT, EMAIL TEXT, HASLO TEXT, PROSIAK TEXT, WIETNAMKA TEXT, SKARBONKA TEXT, CHRUMKA TEXT, SYBERYJSKA TEXT, KAMBODŻANSKA TEXT)''')
-        self.conn.commit()
+       # pig1_data = self.pig1.text()
+        #pig2_data = self.pig2.text()
+       # pig3_data = self.pig3.text()
+       # pig4_data = self.pig4.text()
+       # pig5_data = self.pig5.text()
+       # pig6_data = self.pig6.text()
         
-        self.cursor.execute('''SELECT * FROM UŻYTKOWNICY WHERE PROSIAK=? AND WIETNAMKA=? AND SKARBONKA=? AND CHRUMKA=? AND SYBERYJSKA=? AND KAMBODŻANSKA=?''', (self.pig1,self.pig2,self.pig3,self.pig4,self.pig5,self.pig6))
+        #selected_name = self.name_select.currentText()
+   
+        #self.cursor.execute('''CREATE TABLE IF NOT EXISTS UŻYTKOWNICY (IMIE TEXT, EMAIL TEXT, HASLO TEXT, PROSIAK TEXT, WIETNAMKA TEXT, SKARBONKA TEXT, CHRUMKA TEXT, SYBERYJSKA TEXT, KAMBODŻANSKA TEXT)''')
+        #self.conn.commit()
         
-        self.cursor.execute('''INSERT INTO UŻYTKOWNICY (PROSIAK, WIETNAMKA, SKARBONKA, CHRUMKA, SYBERYJSKA, KAMBODŻANSKA) VALUES (?,?,?,?,?,?)''', (self.pig1,self.pig2,self.pig3,self.pig4,self.pig5,self.pig6))
+        #self.cursor.execute('''SELECT * FROM UŻYTKOWNICY WHERE PROSIAK=? AND WIETNAMKA=? AND SKARBONKA=? AND CHRUMKA=? AND SYBERYJSKA=? AND KAMBODŻANSKA=?''', (self.#pig1,self.pig2,self.pig3,self.pig4,self.pig5,self.pig6))
         
-        self.conn.commit()
-        self.conn.close()
+        #self.cursor.execute('''INSERT INTO UŻYTKOWNICY (PROSIAK, WIETNAMKA, SKARBONKA, CHRUMKA, SYBERYJSKA, KAMBODŻANSKA) VALUES (?,?,?,?,?,?)''', (self.pig1,self.#pig2,self.pig3,self.pig4,self.pig5,self.pig6))
+        
+        #self.cursor.execute("INSERT INTO UŻYTKOWNICY (PROSIAK, WIETNAMKA, SKARBONKA, CHRUMKA, SYBERYJSKA, KAMBODŻANSKA) VALUES (?,?,?,?,?,?)", (pig1_data, #pig2_data, pig3_data, pig4_data, pig5_data, pig6_data))
+        
+        #elf.cursor.execute("INSERT INTO UŻYTKOWNICY (PROSIAK, WIETNAMKA, SKARBONKA, CHRUMKA, SYBERYJSKA, KAMBODŻANSKA) VALUES (%s, %s, %s, %s, %s, %s)", #(pig1_data, pig2_data, pig3_data, pig4_data, pig5_data, pig6_data))
+        
+        
+        #self.conn.commit()
+       # self.conn.close()
         

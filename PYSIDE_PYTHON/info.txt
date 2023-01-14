@@ -28,3 +28,36 @@ Aplikacja powinna posiadać następujące funkcje:
             #self.tableWidget.setItem(row,2,QtWidgets.QTableWidgetItem(p["nick"]))
             
             #row = row + 1
+
+
+
+pig1_data = self.pig1.text()
+        pig2_data = self.pig2.text()
+        pig3_data = self.pig3.text()
+        pig4_data = self.pig4.text()
+        pig5_data = self.pig5.text()
+        pig6_data = self.pig6.text()
+        
+        selected_name = self.class2.name_edit.text()
+        
+        self.conn = sqlite3.connect('mydatabase.db')
+        self.cursor = self.conn.cursor()
+
+        self.cursor.execute("PRAGMA table_info(UŻYTKOWNICY)")
+        columns = [tup[1] for tup in self.cursor.fetchall()]
+
+        columns_to_add = ["PROSIAK", "WIETNAMKA", "SKARBONKA", "CHRUMKA", "SYBERYJSKA", "KAMBODŻANSKA"]
+
+        for column in columns_to_add:
+           if column not in columns:
+              self.cursor.execute(f"ALTER TABLE UŻYTKOWNICY ADD COLUMN {column} TEXT")
+              print(f"Column '{column}' added to table 'UŻYTKOWNICY'.")
+        else:
+           print(f"Column '{column}' already exists in table 'UŻYTKOWNICY'.")
+        self.conn.commit()
+           
+           
+        self.cursor.execute("UPDATE UŻYTKOWNICY SET PROSIAK = ?, WIETNAMKA = ?, SKARBONKA = ?, CHRUMKA = ?, SYBERYJSKA = ?, KAMBODŻANSKA = ? WHERE IMIE = ?", (pig1_data, pig2_data, pig3_data, pig4_data, pig5_data, pig6_data, selected_name))
+
+        self.conn.commit()
+        self.conn.close()
