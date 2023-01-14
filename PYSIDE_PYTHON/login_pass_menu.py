@@ -41,15 +41,16 @@ class MenuPassLog(QDialog):
             window = ShowAllUsers(self)
         else:
             QMessageBox.information(self, "Informacja", "ZALOGOWANO UŻYTKOWNIKA!")
-            winaccept = Piggy(self)
-            winaccept.show()
+            self.winaccept = Piggy(self)
+            self.winaccept.name_edit_co = self.name_edit.text()
+            self.winaccept.show()
             
         self.conn.commit()
         self.conn.close()
         
 class Piggy(QDialog):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)   
+    def init(self,parent, *args, **kwargs):
+        super().init(*args, **kwargs)   
           
         form = QFormLayout()
         self.pig1 = QLineEdit()
@@ -65,6 +66,9 @@ class Piggy(QDialog):
         form.addRow("SYBERYJSKA 🐷:", self.pig5)
         self.pig6 = QLineEdit()
         form.addRow("KAMBODŻANSKA 🐷:", self.pig6)
+        
+        self.parent = parent
+        self.name_edit_co = self.parent.name_edit.text()
         
         self.pig1.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
         self.pig2.setStyleSheet("color: red; font-weight: bold; font-size: 20px; background-color: yellow;")
@@ -102,7 +106,7 @@ class Piggy(QDialog):
         pig6_data = int(self.pig6.text())
         
         self.class2 = MenuPassLog()
-        self.name_edit_co = self.class2.name_edit.text()
+        #self.name_edit_co = self.class2.name_edit.text()
 
         if self.name_edit_co == "":
            QMessageBox.warning(self, "Uwaga", "Wybierz imię z listy")
@@ -135,7 +139,7 @@ class Piggy(QDialog):
             
             #data = self.cursor.fetchall()
             
-            self.cursor.execute("UPDATE UŻYTKOWNICY SET PROSIAK = ?, WIETNAMKA = ?, SKARBONKA = ?, CHRUMKA = ?, SYBERYJSKA = ?, KAMBODŻANSKA = ?, WHERE IMIE=?", (pig1_data, pig2_data, pig3_data, pig4_data, pig5_data, pig6_data,self.name_edit_co))
+            self.cursor.execute("UPDATE UŻYTKOWNICY SET PROSIAK = ?, WIETNAMKA = ?, SKARBONKA = ?, CHRUMKA = ?, SYBERYJSKA = ?, KAMBODŻANSKA = ?, WHERE IMIE=?", (pig1_data, pig2_data, pig3_data, pig4_data, pig5_data, pig6_data,self.parent.name_edit.text()))
             
             self.conn.commit()
             self.conn.close()
