@@ -33,24 +33,31 @@ class MenuPassLog(QDialog):
         
         self.conn = sqlite3.connect('mydatabase.db')
         self.cursor = self.conn.cursor()
+        
+        self.cursor.execute("SELECT * FROM UŻYTKOWNICY WHERE IMIE = ? AND HASLO = ?", (self.name_edit.text(), self.password_edit.text()))
         self.user_base = self.cursor.fetchone()
         
-        self.accept()
-        if self.name_edit.text() == "admin" and self.password_edit.text() == "admin":
-            QMessageBox.information(self, "Informacja", "ZALOGOWANO JAKO ADMINISTRATOR SYSTEMU!")
-            self.windowx = ShowAllUsers()
-            self.windowx.show()
+        if self.user_base:
+            self.accept()
+            if self.name_edit.text() == "admin" and self.password_edit.text() == "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918":
+                QMessageBox.information(self, "Informacja", "ZALOGOWANO JAKO ADMINISTRATOR SYSTEMU!")
+                self.windowx = ShowAllUsers()
+                self.windowx.show()
+            else:
+                QMessageBox.information(self, "Informacja", "ZALOGOWANO UŻYTKOWNIKA!")
+                winaccept = Piggy(self,self.name_edit)
+                winaccept.exec_()
         else:
-            QMessageBox.information(self, "Informacja", "ZALOGOWANO UŻYTKOWNIKA!")
-            winaccept = Piggy(self)
-            winaccept.show()
+            QMessageBox.warning(self, "Błąd logowania", "Nieprawidłowe dane logowania.")
             
         self.conn.commit()
         self.conn.close()
         
 class Piggy(QDialog):
-    def __init__(self, *args, **kwargs):
+    def __init__(self,parent,name_edit, *args, **kwargs):
         super().__init__(*args, **kwargs)   
+        
+        self.name_edit = name_edit
           
         form = QFormLayout()
         self.pig1 = QLineEdit()
@@ -102,10 +109,10 @@ class Piggy(QDialog):
         pig5_data = int(self.pig5.text())
         pig6_data = int(self.pig6.text())
         
-        self.class2 = MenuPassLog()
-        self.name_edit_co = self.class2.name_edit.text()
+        #self.class2 = MenuPassLog()
+        #self.name_edit_co = self.class2.name_edit.text()
 
-        if self.name_edit_co == "":
+        if self.name_edit.text() == "":
            QMessageBox.warning(self, "Uwaga", "Wybierz imię z listy")
         elif pig1_data == "" or pig2_data == "" or pig3_data == "" or pig4_data == "" or pig5_data == "" or pig6_data == "":
            QMessageBox.warning(self, "Uwaga", "Uzupełnij wszystkie pola")
@@ -136,7 +143,7 @@ class Piggy(QDialog):
             
             #data = self.cursor.fetchall()
             
-            self.cursor.execute("UPDATE UŻYTKOWNICY SET PROSIAK = ?, WIETNAMKA = ?, SKARBONKA = ?, CHRUMKA = ?, SYBERYJSKA = ?, KAMBODŻANSKA = ?, WHERE IMIE=?", (pig1_data, pig2_data, pig3_data, pig4_data, pig5_data, pig6_data,self.name_edit_co))
+            self.cursor.execute("UPDATE UŻYTKOWNICY SET PROSIAK = ?, WIETNAMKA = ?, SKARBONKA = ?, CHRUMKA = ?, SYBERYJSKA = ?, KAMBODŻANSKA = ? WHERE IMIE=?", (pig1_data, pig2_data, pig3_data, pig4_data, pig5_data, pig6_data,self.name_edit.text()))
             
             self.conn.commit()
             self.conn.close()

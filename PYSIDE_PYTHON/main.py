@@ -17,3 +17,7 @@ if __name__ == "__main__":
     
     window.show()
     program.exec()
+    
+    
+# DAWID - IMIE , HASLO - 8f1f4de58504e49babb0c7d11195d685710ad1fa444707b1d68e58068c909d29
+# admin - imie, haslo - 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
